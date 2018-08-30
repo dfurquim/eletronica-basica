@@ -35,6 +35,7 @@
 \usepackage{subcaption}
 \usepackage{multirow}
 \usepackage[brazilian]{babel}
+\usepackage{circuitikz}
 % These packages are all incorporated in the memoir class to one degree or another...
 
 %%% HEADERS & FOOTERS
@@ -59,7 +60,7 @@
 
 %%% The "real" document content comes below...
 
-\title{Aula 1: Osciloscópio}
+\title{Aula 2: Retificador de Meia Onda}
 \author{Prof. Derick Furquim Pereira}
 \date{} % Activate to display a given date or no date (if empty),
          % otherwise the current date is printed 
@@ -70,59 +71,62 @@
 
 \begin{enumerate}
 
-\item (4,0 pontos) Calcule o valor médio e o valor eficaz dos sinais abaixo.
+\item (2,0 pontos) Dado o circuito abaixo, onde $v_i(t)=V_P\sin\omega t$, calcule o valor médio de $v_o(t)$.
 
 \begin{figure}[!h]
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{square.eps}
-        \caption{}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{triangle.eps}
-        \caption{}
-    \end{subfigure}
+	\centering
+%	\begin{subfigure}{0.45\textwidth}
+	\begin{circuitikz}[american voltages]
+		\draw (0,0) node[ground] {};
+		\draw (-.25,3) to[open, v=$v_i(t)$] (-.25,0);
+		\draw (0,0) to[sV] (0,3);
+		\draw (0,3) to[Do, l=$D_1$] (3,3);
+		\draw (3,3) to[R, l_=$R$] (3,0);
+		\draw (3,0) to[short, -*] (0,0);
+		\draw (3,3) to[open, v^=$v_o(t)$] (3,0);
+	\end{circuitikz}
+%	\end{subfigure}
+%	~
+%	\begin{subfigure}{0.45\textwidth}
+%		\begin{tikzpicture}
+%			\draw[step=.375cm,gray,very thin] (0,0) grid (6,3);
+%		\end{tikzpicture}
+%	\end{subfigure}
 \end{figure}
 
-%\begin{multicols}{2}
-\begin{enumerate}[start=3]
-\centering
-\item $y(t)=V_P\sin{\omega t}$
-%\item $y(t)=V_P\sin^2{\omega t}$
-\end{enumerate}
-%\end{multicols}
+\item (2,0 pontos) Com base na resposta da questão anterior, responda:
 
-\item (6,0 pontos) Com o auxílio de um osciloscópio, meça a tensão dos sinais abaixo, esboce a forma de onda observada e meça os valores de pico a pico, eficaz, médio, o período e a frequência.
-
+%\begin{figure}[!h]
+%	\centering
+%	\begin{subfigure}{0.45\textwidth}
 \begin{enumerate}
-\begin{multicols}{2}
-\item Sinal de teste interno do osciloscópio
-\item Tensão do secundário do transformador da bancada
-\end{multicols}
+\item Qual a relação entre as frequências de $v_o$ e $v_i$? Justifique.
+\item A tensão de saída $v_o$ é contínua? Justifique.
+\item O que acontece durante o semiciclo negativo de $v_i$?
+%\item Esboce a forma de onda da tensão no diodo $D_1$
 \end{enumerate}
+%	\end{subfigure}
+%	~
+%	\begin{subfigure}{0.45\textwidth}
+%		\begin{tikzpicture}
+%			\draw[step=.375cm,gray,very thin] (0,0) grid (6,3);	
+%		\end{tikzpicture}
+%	\end{subfigure}
+%\end{figure}
+
+\item (6,0 pontos) Com o auxílio de um osciloscópio, meça a tensão de saída do retificador de meia onda, esboce a forma de onda observada e meça os valores de pico a pico, eficaz, médio, o período e a frequência.
 
 \begin{figure}[!h]
-\begin{subfigure}[b]{.45\textwidth}
-\centering
-\begin{tikzpicture}
-%\draw[step=.5cm,gray,very thin] (0,0) grid (5,4);
-\draw[step=.375cm,gray,very thin] (0,0) grid (6,3);
-\end{tikzpicture}
-\end{subfigure}
-~
-\begin{subfigure}[b]{.45\textwidth}
-\centering
-\begin{tikzpicture}
-%\draw[step=.5cm,gray,very thin] (0,0) grid (5,4);
-\draw[step=.375cm,gray,very thin] (0,0) grid (6,3);
-\end{tikzpicture}
-\end{subfigure}
+	\centering
+	\begin{tikzpicture}
+		\draw[step=.5cm,gray,very thin] (0,0) grid (5,4);	
+%		\draw[step=.375cm,gray,very thin] (0,0) grid (6,3);	
+	\end{tikzpicture}
 \end{figure}
 
 \begin{table}[!h]
 \centering
-\caption{Sinal de teste interno do osciloscópio.}
+\caption{Tensão de saída do retificador de meia onda.}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 Valor & Acoplamento CC & Acoplamento CA & Período & Frequência\\\hline
@@ -132,17 +136,22 @@ Médio & & & & \\\hline
 \end{tabular}
 \end{table}
 
-\begin{table}[!h]
-\centering
-\caption{Tensão do secundário do transformador da bancada.}
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-Valor & Acoplamento CC & Acoplamento CA & Período & Frequência\\\hline
-Pico-pico & & & & \\\cline{1-3}
-Eficaz & & & & \\\cline{1-3}
-Médio & & & & \\\hline
-\end{tabular}
-\end{table}
+%\item (1,0 ponto) Com base na resposta da questão anterior, responda:
+%
+%\item (2,0 pontos)
+
+%
+%\begin{table}[!h]
+%\centering
+%\caption{Tensão do secundário do transformador da bancada.}
+%\begin{tabular}{|c|c|c|c|c|}
+%\hline
+%Valor & Acoplamento CC & Acoplamento CA & Período & Frequência\\\hline
+%Pico-pico & & & & \\\cline{1-3}
+%Eficaz & & & & \\\cline{1-3}
+%Médio & & & & \\\hline
+%\end{tabular}
+%\end{table}
 
 \end{enumerate}
 
